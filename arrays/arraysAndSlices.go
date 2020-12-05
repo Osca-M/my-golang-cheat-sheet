@@ -43,11 +43,16 @@ func main() {
 	}
 	// ===========================================SLICES========================================================
 	// References to data held in an array, they do not hold data on their own
-	var sliceKeys3 []int = keysV3[0:5] // create a slice from existing array
-	fmt.Println(sliceKeys3, "sliceKeys3")
-
-	slice2 := []int{5, 6, 8} // Creates an array but returns a slice, Any changes to the mother array affects the slice. It does not own any data
+	var emptySlice []string                               // create an empty slice
+	emptySlice = append(emptySlice, "Seniors", "Juniors") // appending to a slice
+	var sliceKeys3 []int = keysV3[0:5]                    // create a slice from existing array
+	slice2 := []int{5, 6, 8}                              // Creates an array but returns a slice, Any changes to the mother array affects the slice. It does not own any data
 	fmt.Println(slice2)
 	slice3 := keysV3[8:10]
-	fmt.Println(slice3)
+	appendedSlice := append(slice3, sliceKeys3...) // appending twoslices, must be of same type
+	fmt.Println(appendedSlice)
+	// creating a slice using make
+	// func make([]T, len, cap) []T
+	makeSlice := make([]string, 5, 5) // length is smaller than capacity
+	fmt.Println(makeSlice, "makeSlice")
 }
