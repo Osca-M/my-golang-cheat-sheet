@@ -70,6 +70,31 @@ func stringRepresentation(e Employee) {
 		fmt.Printf("%s is our employee, they are %d years old, holds a %s role and earns %d amount of money \n", e.name, e.age, e.role, e.salary)
 	}
 }
+// Name struct
+type Name struct {
+	Family   string
+	Personal string
+}
+// Email struct
+type Email struct {
+	Kind    string
+	Address string
+}
+// Person struct
+type Person struct {
+	Name  Name
+	Email []Email
+}
+
+func (p Person) String() string {
+	s := p.Name.Personal + " " + p.Name.Family
+	for _, v := range p.Email {
+		s += "\n" + v.Kind + ": " + v.Address
+	}
+	return s
+}
+
+
 func main() {
 	osca := Employee{
 		name:   "Osca Mwongera",
@@ -156,4 +181,18 @@ func main() {
 	fmt.Println("Student's postal address:", s.postalAddress) // Promoted field
 	fmt.Println("Student's city:", s.city)                    // Promoted field
 	s.fullAddress()                                           // Accessing methods to an anonymous struct field
+
+	// A compoiund struct
+	person := Person{
+		Name: Name{Family: "Mukiri", Personal: "Mwongera"},
+		Email: []Email{
+			Email{
+				Kind: "work", Address: "m@work.com",
+			},
+			Email{
+				Kind: "home", Address: "m@home.com",
+			},
+		},
+	}
+	fmt.Println(person.String())
 }
